@@ -9,11 +9,11 @@ This is a ready setup to build front end application only. No plugin included
 
 ### How do I get set up? ###
 
-* Run npm install in cli
-* Run npm start
+* Run `npm install` to install all node dependecies
+* Run `npm start` to build scss file and run a local server
 
 ### What is in here? ###
-* SCSS / SMACSS
+* SCSS / SMACSS Guide Pattern
 * NPM Gulp
 * NPM Gulp Sass
 * NPM Clean CSS
