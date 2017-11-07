@@ -3,17 +3,16 @@ var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css');
 var beautifyCSS = require('gulp-cssbeautify');
 
-// just run gulp sass on cli
-gulp.task('styles', function () {
+gulp.task('custom', function () {
     return gulp
         .src('./scss/**/*.scss')
         .pipe(sass())
-        .pipe(beautifyCSS())
+        .pipe(cleanCSS())
         .pipe(gulp.dest('./css'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./scss/**/*.scss', ['styles']);
+    gulp.watch('./scss/**/*.scss', ['custom']);
 });
 
-gulp.task('default', ['styles']);
+gulp.task('default', ['custom']);

@@ -1,5 +1,5 @@
 {
-  "name": "mastering_sass",
+  "name": "frontend_setup",
   "version": "1.0.0",
   "scripts": {
     "start": "npm run gulp && concurrently \"npm run gulp-watch\" \"npm run lite\"",
