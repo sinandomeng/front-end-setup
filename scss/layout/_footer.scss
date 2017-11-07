@@ -2,5 +2,150 @@
    Layout/Footer
    ======================= */
 
-.l-footer {
+.footer {
+    height: auto !important;
+    background: #2e2b27;
+    text-align: left;
+
+    .footer-1 {
+        .flex-footer {
+            display: -webkit-flex;
+            display: flex;
+            padding: 80px 0px;
+    
+            & > div {
+                margin: 20px;
+                flex: 1 1;
+
+                .column-title {
+                    color: $color-tertiary;
+                    font-family: Roboto, Montserrat;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+
+                .and-logo {
+                    margin-bottom: 20px;
+                }
+
+                .site-links {
+                    padding: 0px;
+
+                    li {
+                        &:not(:last-child) {
+                            border-style: solid;
+                            border-color: rgb(67, 65, 61);
+                            border-width: 0px 0px 0.01em 0px;
+                        }
+                        list-style-type: none;
+                        padding: 8px 0px;
+                        text-transform: capitalize;
+                        
+                        a {
+                            color: $color-tertiary;
+                            display: block;
+                            position: relative;
+
+                            .glyphicon {
+                                position: absolute;
+                                right: 0px;
+                                top: 5px;
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+
+                .instagram-blk {
+                    display: -webkit-flex;
+                    display: flex;
+                    flex-direction: column;
+                    flex-flow: wrap;
+                    width: 100%;
+                    
+                    img {
+                        width: 33.33%;
+                        height: 100%;
+                        padding: 0px 15px 15px 0px;
+                        object-fit: cover;
+                        object-position: top 50%;
+                    }
+                }
+                
+                .contacts {
+                    .details {
+                        &.ph { margin-top: 30px; }
+                        &.hk { margin-top: 30px; }
+
+                        h5 {
+                            font-family: Roboto, Montserrat;
+                            font-weight: 500;
+                        }
+
+                        p {
+                            font-family: Roboto, Montserrat;
+                            line-height: 15px;
+                            position: relative;
+                            padding-left: 20px;
+
+                            .fa {
+                                position: absolute;
+                                left: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-2 {
+        background: #23211e;
+        padding: 10px 0px;
+
+        .col-sm-6 {
+            padding: 10px 30px;
+        }
+
+        .ppc {
+            float: left;
+            
+            p {
+                margin: 0px;
+
+                a {
+                    color: $color-secondary;
+                    font-family: Roboto, Montserrat;
+                }
+            }
+        }
+
+        .cpr {
+            float: right;
+            
+            p {
+                margin: 0px;
+                font-family: Roboto, Montserrat;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        .footer-1 {
+            .flex-footer {
+                padding: 50px 0px;
+                flex-direction: column;
+            }
+        }
+
+        .footer-2 {
+            .ppc,
+            .cpr {
+                float: none;
+                text-align: center;
+            }
+        }
+    }
 }

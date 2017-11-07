@@ -2,11 +2,35 @@
    Base
    =========================== */
 
-* {
+*,
+*::before,
+*::after { 
     box-sizing: border-box;
 }
 
-html {
+html, body {
     height: 100%;
     width: 100%;
+}
+
+body {
+    color: $color-secondary;
+    font-family: Montserrat, Opensans, Roboto;
+    font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none !important;
+
+    &:focus,
+    &:hover {
+        background: none;
+    }
+}
+
+p {
+    line-height: 28px;
 }

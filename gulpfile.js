@@ -1,19 +1,32 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css');
-var beautifyCSS = require('gulp-cssbeautify');
+var gulp = require('gulp'),
+    gulpSass = require('gulp-sass'),
+    gulpConnect = require('gulp-connect-php'),
+    gulpCleanCss = require('gulp-clean-css'),
+    beautifyCss = require('gulp-cssbeautify'),
+    autoPrefix = require('gulp-autoprefixer'),
+    browserSync = require('browser-sync');
 
-// just run gulp sass on cli
-gulp.task('styles', function () {
-    return gulp
-        .src('./scss/**/*.scss')
-        .pipe(sass())
-        .pipe(beautifyCSS())
-        .pipe(gulp.dest('./css'));
+gulp.task('style-script', function () {
+    gulp.src('./scss/**/*.scss')
+        .pipe(gulpSass())
+        .pipe(autoPrefix({
+            browsers: ['last 2 versions']
+        }))
+        // .pipe(gulpCleanCss())
+        .pipe(beautifyCss())
+        .pipe(gulp.dest('./css'))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', function () {
-    gulp.watch('./scss/**/*.scss', ['styles']);
+gulp.task('connect-sync', function () {
+    gulpConnect.server({}, function () {
+        browserSync.init({
+            proxy: '127.0.0.1:8000'
+        });
+    });
+
+    gulp.watch('./scss/**/*.scss', ['style-script']);
+    gulp.watch(['./**/*.html', './**/*.php', './js/**/*.js']).on('change', browserSync.reload);
 });
 
-gulp.task('default', ['styles']);
+gulp.task('default', ['style-script', 'connect-sync']);
