@@ -1,18 +1,35 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css');
-var beautifyCSS = require('gulp-cssbeautify');
+var gulp = require('gulp'),
+    gulpSass = require('gulp-sass'),
+    gulpConnect = require('gulp-connect-php'),
+    gulpCleanCss = require('gulp-clean-css'),
+    beautifyCss = require('gulp-cssbeautify'),
+    autoPrefix = require('gulp-autoprefixer'),
+    browserSync = require('browser-sync');
 
-gulp.task('custom', function () {
-    return gulp
-        .src('./scss/**/*.scss')
-        .pipe(sass())
-        .pipe(cleanCSS())
-        .pipe(gulp.dest('./css'));
+gulp.task('style-script', function () {
+    gulp.src('./scss/**/*.scss')
+        .pipe(gulpSass())
+        .pipe(autoPrefix({
+            browsers: ['last 2 versions']
+        }))
+        .pipe(gulpCleanCss())
+        // .pipe(beautifyCss())
+        .pipe(gulp.dest('./css'))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', function () {
-    gulp.watch('./scss/**/*.scss', ['custom']);
+gulp.task('connect-sync', function () {
+    gulpConnect.server({
+        port: 8002,
+        keepalive: true
+    }, function () {
+        browserSync.init({
+            proxy: '127.0.0.1:8002'
+        });
+    });
+
+    gulp.watch('./scss/**/*.scss', ['style-script']);
+    gulp.watch(['./**/*.html', './**/*.php', './js/**/*.js']).on('change', browserSync.reload);
 });
 
-gulp.task('default', ['custom']);
+gulp.task('default', ['style-script', 'connect-sync']);
