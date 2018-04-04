@@ -1,5 +1,5 @@
 {
-  "name": "and_offshore",
+  "name": "frontend_setup",
   "version": "1.0.0",
   "scripts": {
     "start": "gulp"
