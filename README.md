@@ -9,8 +9,8 @@ This is a ready setup to build front end application only. No plugin included
 
 ### How do I get set up? ###
 
-* Run npm install in cli
-* Run npm start
+* Run `npm install` in cli
+* Run `npm start` or `gulp`
 
 ### What is in here? ###
 * SCSS / SMACSS
